@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'SDCE' });
 });
 
 module.exports = router;
@@ -18,6 +18,7 @@ router.get('/userlist', function(req, res) {
    });
 });
 
+/*Fazer 
 /* GET New User page. */
 router.get('/newuser', function(req, res) {
 res.render('newuser', { title: 'Add New User' });
@@ -39,7 +40,7 @@ router.post('/adduser', function (req, res) {
         }
         else {
             console.log("Post saved");
-            res.redirect("userlist");
+            res.redirect("/");
         }
     });
 });
