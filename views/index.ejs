@@ -7,17 +7,26 @@
   <body>
     <h1><%= title %></h1>
     <p>Bem-vindo ao SDCE</p>
-    <form action="/userlist">
+    <!-- Adicionar e listar escolas -->
+    <form action="/schoollist">
     	<input type="submit" value="Listar Escolas" />
 	</form>
- 	<form action="/newuser">
+ 	<form action="/createschool">
     	<input type="submit" value="Adicionar Escola" />
     </form>
-    <form action="/userlist">
-    	<input type="submit" value="Adicionar Turma" />
+    <!-- Adicionar e listar turmas -->
+  <form action="/userlist">
+      <input type="submit" value="Listar Turmas" />
+  </form>
+      <form action="/createclass">
+      <input type="submit" value="Adicionar Turma" />
+    </form>
+  <!-- Adicionar e listar usuários -->
+    <form action="/newuser">
+    	<input type="submit" value="Adicionar Usuario" />
 	</form>
- 	<form action="/newuser">
-    	<input type="submit" value="Listar Turmas" />
+ 	<form action="/userlist">
+    	<input type="submit" value="Listar Usuarios" />
 	</form>
   </body>
 </html>

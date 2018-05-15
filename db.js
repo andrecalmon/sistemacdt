@@ -6,5 +6,11 @@ var userSchema = new mongoose.Schema({
     email: String
 }, { collection: 'usercollection' }
 );
+
+var schoolSchema = new mongoose.Schema({
+    name: String,
+    classes: []
+}, { collection: 'schoolcollection' }
+);
  
-module.exports = { Mongoose: mongoose, UserSchema: userSchema }
+module.exports = { Mongoose: mongoose, UserSchema: userSchema, SchoolSchema: schoolSchema }
