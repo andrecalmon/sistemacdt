@@ -51,13 +51,12 @@ res.render('createschool', { title: 'Adicionar Nova Escola' });
 
 /* GET New Turma page. */
 router.get('/createclass', function(req, res) {
-var db = require("../db");
+   var db = require("../db");
    var Schools = db.Mongoose.model('schoolcollection', db.SchoolSchema, 'schoolcollection');
    Schools.find({}).lean().exec(
       function (e, docs) {
-         res.render('schoollist', { "schoollist": docs });
+         res.render('createclass', { "createclass": docs });
    });
-res.render('createclass', { title: 'Adicionar Nova Turma' });
 });
 
 /* POST to Add User Service */
@@ -100,3 +99,4 @@ router.post('/addschool', function (req, res) {
         }
     });
 });
+

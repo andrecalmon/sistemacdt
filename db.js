@@ -12,5 +12,17 @@ var schoolSchema = new mongoose.Schema({
     classes: []
 }, { collection: 'schoolcollection' }
 );
+
+var classSchema = new mongoose.Schema({
+    name: String,
+    students: []
+}, { collection: 'classcollection' }
+);
+
+var studentSchema = new mongoose.Schema({
+    name: String,
+    matricula: String
+}, { collection: 'classcollection' }
+);
  
-module.exports = { Mongoose: mongoose, UserSchema: userSchema, SchoolSchema: schoolSchema }
+module.exports = { Mongoose: mongoose, UserSchema: userSchema, SchoolSchema: schoolSchema, ClassSchema: classSchema, StudentSchema: studentSchema }
