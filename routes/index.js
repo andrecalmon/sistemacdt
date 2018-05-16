@@ -100,3 +100,22 @@ router.post('/addschool', function (req, res) {
     });
 });
 
+/* POST to Add Turma Service */
+router.post('/addclass', function (req, res) {
+
+    var db = require("../db");
+    var nome = req.body.nome;
+
+    var Schools = db.Mongoose.model('schoolcollection', db.SchoolSchema, 'schoolcollection');
+    var school = new Schools({ name: nome, classes: [] });
+    school.save(function (err) {
+        if (err) {
+            console.log("Error! " + err.message);
+            return err;
+        }
+        else {
+            console.log("Post saved");
+            res.redirect("/");
+        }
+    });
+});
