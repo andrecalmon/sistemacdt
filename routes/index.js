@@ -28,13 +28,13 @@ router.get('/schoollist', function(req, res) {
    });
 });
 
-/* GET Escolaslist page. */
-router.get('/schoollist', function(req, res) {
+/* GET Classlist page. */
+router.get('/classlist', function(req, res) {
    var db = require("../db");
    var Schools = db.Mongoose.model('schoolcollection', db.SchoolSchema, 'schoolcollection');
    Schools.find({}).lean().exec(
       function (e, docs) {
-         res.render('schoollist', { "schoollist": docs });
+         res.render('classlist', { "classlist": docs });
    });
 });
 
@@ -105,17 +105,53 @@ router.post('/addclass', function (req, res) {
 
     var db = require("../db");
     var nome = req.body.nome;
+    var strSchool = req.body.escola;
 
-    var Schools = db.Mongoose.model('schoolcollection', db.SchoolSchema, 'schoolcollection');
-    var school = new Schools({ name: nome, classes: [] });
-    school.save(function (err) {
+    console.log(strSchool);
+    //var e = document.getElementById("qualEscola");
+    //var strSchool = e.options[e.selectedIndex].value;
+
+    var Classes = db.Mongoose.model('classcollection', db.ClassSchema, 'classcollection');
+    var classe = new Classes({ name: nome, students: [] });
+    classe.save(function (err) {
         if (err) {
             console.log("Error! " + err.message);
             return err;
         }
         else {
+          var Schools = db.Mongoose.model('schoolcollection', db.SchoolSchema, 'schoolcollection');
+          Schools.findOne({ 'name': strSchool}, 'classes', function(err, school){
+      if (err) return handleError(err);
+      school.classes.push(nome);
+      school.save(function(err){
+        if (err) {
+          console.log("Error!" + err.message);
+          return err;
+        }
+        else {
+          console.log('School updated!')
+        }
+      }
+
+        )
+    });
             console.log("Post saved");
             res.redirect("/");
         }
     });
+});
+
+/* GET Select School Service. */
+router.get('/choicelist', function(req, res) {
+   var db = require("../db");
+   var strSchool = req.query.escola;
+   
+   console.log(strSchool);
+
+   var Schools = db.Mongoose.model('schoolcollection', db.SchoolSchema, 'schoolcollection');
+   Schools.findOne({ 'name': strSchool}, 'classes', function(err, docs){
+      if (err) return handleError(err);
+      console.log(docs);
+      res.render('choicelist', { "choicelist": docs });
+   });
 });

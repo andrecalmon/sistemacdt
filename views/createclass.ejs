@@ -2,19 +2,23 @@
 <html lang="en">
 <head></head>
 <body>
-    <button onclick="testes()">Click me</button>
     <h1 class="text-center title-1"> Cadastro de Nova Turma </h1>
-     <p><%= createclass[0].name %></p>
+    <form action="/addclass" method="post"> 
     Escolha a escola a que esta turma pertence: 
- <select onchange="mudarPosicao()" id="qualEscola">
+ 
+<select onchange="mudarPosicao()" id="qualEscola" name="escola">
 <% createclass.forEach(function(school){ %>
- <option><%= school.name %> Numero de turmas: <%=school.classes.length%> </option>
+ <option><%= school.name %> </option> <!--Numero de turmas: <%=school.classes.length%>-->
  <%})%>
 </select>
-    <form action="/addclass" method="post">
+    
         <p>Nome da Turma:<input type="text" name="nome" /></p>
         <p><input type="submit" value="Adicionar Turma" /></p>
     </form>
     <p id="demo"></p>
 </body>
+<script>
+	var e = document.getElementById("qualEscola");
+	var strSchool = e.options[e.selectedIndex].value;
+</script>
 </html>
